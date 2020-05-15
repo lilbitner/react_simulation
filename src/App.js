@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import LoginPage from './Components/LoginPage'
 import PrivateRoute from './Components/PrivateRoute'
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 
 export default class App extends React.Component {
 
@@ -15,9 +15,8 @@ export default class App extends React.Component {
   }
   
   componentDidMount() {
-    console.log('mount')
     if(localStorage.token){
-      fetch(`https://recipe-collector-capstone.herokuapp.com/users/authenticate`, {
+      fetch('http://localhost:5000/users/authenticate', {
       method: "GET",
       headers: {
         'Authorization': `Bearer ${localStorage.token}`
@@ -29,7 +28,7 @@ export default class App extends React.Component {
   }
 
   login = (user) => {
-    fetch("https://recipe-collector-capstone.herokuapp.com/users/login", {
+    fetch("http://localhost:5000/users/login", {
        method: 'POST',
        headers: {
          "Content-Type": "application/json"
@@ -42,7 +41,7 @@ export default class App extends React.Component {
        { this.setState({isCorrectUser: false}) }
       else {
        localStorage.setItem('token', response.token)
-       localStorage.setItem('user_id', response.foundUser.id)
+      //  localStorage.setItem('user_id', response.foundUser.id)
        this.componentDidMount()
        this.setState({isLoggedIn: true, user: response.foundUser})}
       })
@@ -59,7 +58,7 @@ export default class App extends React.Component {
                login={this.login} 
               />}
             /> 
-        <LoginPage/>
+            <Route render={() => <Redirect to='/login'/>}/>
         </Switch>
       </div>
     );

@@ -5,7 +5,7 @@ import Home from './Home'
 
 export default function PrivateRoute(props) {
     return <Route {...props} render = {(routerProps) => {
-        return localStorage.token ? <Home user={props.user} {...routerProps} />  
+        return localStorage.token ? <Home user={props.user} {...routerProps} date={new Date()} />  
         : <Redirect to='/login'/>
     }} />
 }
