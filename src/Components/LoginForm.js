@@ -11,13 +11,9 @@ export default class Login extends React.Component {
     }
 
 
-    componentDidMount() {
-        localStorage.removeItem('token')
-        localStorage.removeItem('user_id')
-    }
-
     handleSubmit = (event) => {
         event.preventDefault()
+        console.log(event)
         if(this.props.closeForm){ 
         this.props.closeForm(false)}
         this.props.login(this.state)
@@ -30,20 +26,23 @@ export default class Login extends React.Component {
         })
     }
     
+   
     
     render() {
         return(
             <form onSubmit={this.handleSubmit} className='inputContainer'> 
                 <input type='text' className='usernameInput' name='username'
-                    value={this.state.username} onChange={this.handleChange} 
+                    value={this.state.username} ref='fieldUser' onChange={this.handleChange} 
                     placeholder='Username' 
                 />
                 <input type='text' className='passwordInput' type='password' name='password' 
-                    value={this.state.password} onChange={this.handleChange} 
+                    value={this.state.password} ref='fieldPassword' onChange={this.handleChange} 
                     placeholder='Password'
                 />
                 <input className='Submit' type='submit'/>
+
             </form>
+            
         )
     }
 }
