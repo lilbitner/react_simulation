@@ -1,0 +1,23 @@
+
+.centerContainer{
+    text-align: center;
+    margin-top: 15%;
+    padding-bottom: 2%;
+    padding-top: 2%;
+    background-color: lightgrey;
+    box-shadow: 0px 0px 8px ;
+    
+
+}
+
+
+
+#logout {
+    text-decoration: none;
+    color: black;
+    border: solid;
+    border-color: white;
+    padding: 2px 2px 2px;
+    box-shadow: 0px 0px 8px;
+    font-family: 'Lato', sans-serif;
+}
