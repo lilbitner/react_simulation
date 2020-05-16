@@ -10,7 +10,7 @@ export default function LoginPage(props){
                 <h1 id='welcome'>Welcome to Risk Management</h1>
                 <h1 id='loginTitle'>Login</h1>
                 <LoginForm {...props} login={props.login} /> 
-                {!props.isCorrectUser? <h2>Incorrect user credentials, please try again</h2> :null}
+                {!props.isCorrectUser? <h2 id='error'>Incorrect user credentials, please try again</h2> :null}
             </div>
         </div>
     )
