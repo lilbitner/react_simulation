@@ -1,24 +1,29 @@
-import React from 'react'
+// import React from 'react'
 import LoginForm from './LoginForm'
 import '../Styling/LoginPage.css'
+import React, { useEffect } from "react";
 
-export default class LoginPage extends React.Component {
+export default function LoginPage(props){
     
-    componentDidMount() {
+    
+
+    // componentDidMount()
+    //     localStorage.removeItem('token')
+    // }
+
+    useEffect(() => {
         localStorage.removeItem('token')
-    }
+    }, [])
     
     
-    render() {
-        return(
-            <div className='mainBody'>
+    return(
+        <div className='mainBody'>
             <div className='login'> 
                 <h1 id='welcome'>Welcome to Risk Management</h1>
                 <h1 id='loginTitle'>Login</h1>
-                <LoginForm {...this.props} login={this.props.login} /> 
-                {!this.props.isCorrectUser? <h2>Incorrect user credentials, please try again</h2> :null}
+                <LoginForm {...props} login={props.login} /> 
+                {!props.isCorrectUser? <h2>Incorrect user credentials, please try again</h2> :null}
             </div>
         </div>
-        )
-    }
+    )
 }

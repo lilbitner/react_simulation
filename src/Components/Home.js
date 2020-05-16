@@ -2,8 +2,6 @@ import React from 'react'
 import '../Styling/Home.css'
 
 
-
-
 export default class Home extends React.Component{
     
     state = {
@@ -12,23 +10,29 @@ export default class Home extends React.Component{
     }
 
     interval = () => {
-        let intervalId = setInterval(this.interval, 1000)
-      setInterval(() => {
-            this.setState({datetime: new Date(), intervalId: intervalId}) 
+        // let intervalId = setInterval(this.interval, 1000)
+       setInterval(() => {
+            this.setState({datetime: new Date()}) 
         }, 1000)
+    }
+
+    // intervalId = 0 
+
+    componentDidMount() {
+        let intervalId = setInterval(this.interval, 1000)
+        console.log(this.intervalId)
+        this.setState({ intervalId: intervalId })
     }
 
     componentWillUnmount() {
         clearInterval(this.state.intervalId)
+        this.props.clearState()
     }
-
-    logout = () => {
-        this.props.history.push('/login')
-        
-    }
-
     
-     
+    logout = () => {
+        this.props.history.push('/login') 
+    }
+
     render() {
         return(
             <body>
@@ -42,6 +46,5 @@ export default class Home extends React.Component{
                 </div>
             </body>
         )
-    }
-    
+    }    
 }
