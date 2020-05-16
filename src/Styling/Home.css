@@ -1,16 +1,18 @@
 
 .centerContainer{
     text-align: center;
-    margin-top: 15%;
+    margin-top: 11.5%;
     padding-bottom: 2%;
+    margin-left: 25%;
     padding-top: 2%;
-    background-color: lightgrey;
+    background-color: whitesmoke;
+    /* opacity: .5; */
+    /* background-color: gray; */
     box-shadow: 0px 0px 8px ;
+    width: 50%;
     
 
 }
-
-
 
 #logout {
     text-decoration: none;
@@ -20,4 +22,10 @@
     padding: 2px 2px 2px;
     box-shadow: 0px 0px 8px;
     font-family: 'Lato', sans-serif;
+    width: 10vw;
+}
+
+body {
+    /* background-color: rgb(68, 121, 146); */
+    background: linear-gradient(to bottom, #66ccff 0%, #336699 100%);
 }
