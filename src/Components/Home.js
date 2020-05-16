@@ -9,23 +9,28 @@ import '../Styling/Home.css'
 export default class Home extends React.Component{
     
     state = {
-        datetime: new Date()
+        datetime: new Date(),
+        intervalId: ''
     }
 
     interval = () => {
-        setInterval(() => {
-            this.setState({datetime: new Date()}) 
+        let intervalId = setInterval(this.interval, 1000)
+      setInterval(() => {
+            this.setState({datetime: new Date(), intervalId: intervalId}) 
         }, 1000)
     }
 
-   
+    componentWillUnmount() {
+        clearInterval(this.state.intervalId)
+    }
 
-    // logout = () => {
-    //         localStorage.removeItem('token')
-    //         this.props.history.push('/login')
-    // }
+    logout = () => {
+        this.props.history.push('/login')
+        
+    }
+
     
-    
+     
     render() {
         return(
             <div className='centerContainer'> 
@@ -34,8 +39,8 @@ export default class Home extends React.Component{
                 <h2>Current Time: {this.state.datetime.toLocaleTimeString()}</h2>
                 <h2>Current Date: {this.state.datetime.toLocaleDateString()}</h2>
                 <h2>Path of Working Directory: {this.props.pathname}</h2>
+                <button onClick={this.logout}>Logout</button>
                 {this.interval()}
-                <NavLink id ='logout' to='/login'>Logout</NavLink>
             </div>
         )
     }

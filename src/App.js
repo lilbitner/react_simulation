@@ -12,7 +12,7 @@ export default class App extends React.Component {
     isLoggedIn: false,
     isCorrectUser: true,
     isIncorrectPassword: false,
-    pathname: []
+    pathname: [],
   }
   
   componentDidMount() {
@@ -34,14 +34,13 @@ export default class App extends React.Component {
       }
       })
       .then(response => response.json())
-      // .then(console.log)
       .then(result => this.setState({pathname: result.pathname}))
     }
     
   }
 
   login = (user) => {
-    fetch("http://localhost:5000/users/login", {
+    return fetch("http://localhost:5000/users/login", {
        method: 'POST',
        headers: {
          "Content-Type": "application/json"
@@ -54,18 +53,19 @@ export default class App extends React.Component {
        { this.setState({isCorrectUser: false}) }
       else {
        localStorage.setItem('token', response.token)
-      //  localStorage.setItem('user_id', response.foundUser.id)
        this.componentDidMount()
        this.setState({isLoggedIn: true, user: response.foundUser})}
       })
    }
+
+  
 
 
   render() {
     return (
       <div className="App">
         <Switch> 
-            <PrivateRoute exact user={this.state.user} path='/' pathname={this.state.pathname} />
+            <PrivateRoute exact user={this.state.user} path='/'  pathname={this.state.pathname} />
             <Route path='/login' render={(props) => <LoginPage {...props} 
                isLoggedIn={this.state.isLoggedIn} isCorrectUser={this.state.isCorrectUser} 
                login={this.login} 
