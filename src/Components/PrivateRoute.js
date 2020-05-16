@@ -5,7 +5,9 @@ import Home from './Home'
 export default function PrivateRoute(props) {
 
     return <Route {...props} render = {(routerProps) => {
-        return localStorage.token ? <Home user={props.user} clearState={props.clearState} pathname={props.pathname} {...routerProps}  />  
+        return localStorage.token ? <Home user={props.user} clearState={props.clearState} pathname={props.pathname}
+            timestamp={props.timestamp} {...routerProps}  
+        />  
         : <Redirect to='/login'/>
     }} />
 }

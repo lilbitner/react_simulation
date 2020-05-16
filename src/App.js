@@ -11,7 +11,8 @@ export default class App extends React.Component {
     isLoggedIn: false,
     isCorrectUser: true,
     isIncorrectPassword: false,
-    pathname: [],
+    pathname: '',
+    timestamp: ''
   }
   
   componentDidMount() {
@@ -23,7 +24,7 @@ export default class App extends React.Component {
       }
       })
       .then(response => response.json())
-      .then(result => this.setState({user: result.user, pathname: result.path}))
+      .then(result => this.setState({user: result.user, pathname: result.path, timestamp: result.timestamp}))
     }
   }
 
@@ -48,14 +49,16 @@ export default class App extends React.Component {
   }
 
    clearState = () => {
-     this.setState({user: {}, pathname: '', isLoggedIn: false})
+     this.setState({user: {}, pathname: '', isLoggedIn: false, timestamp: ''})
    }
 
   render() {
     return (
       <div className="App">
         <Switch> 
-            <PrivateRoute exact user={this.state.user} path='/' clearState={this.clearState} pathname={this.state.pathname} />
+            <PrivateRoute exact user={this.state.user} path='/' clearState={this.clearState} pathname={this.state.pathname} 
+              timestamp={this.state.timestamp} 
+            />
             <Route path='/login' render={(props) => <LoginPage {...props} 
                isLoggedIn={this.state.isLoggedIn} isCorrectUser={this.state.isCorrectUser} 
                login={this.login} 
