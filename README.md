@@ -1,68 +1,45 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Talagent Simulation 
 
-## Available Scripts
+React and Node applications created to demonstrate the following functionality: 
 
-In the project directory, you can run:
+1. Login Page 
+    - Default page if not logged-in 
+    - Should only accept one combination of username & password
+    - If the username or password are not valid, an error message appears
+    - If the username and password are valid, the page is redirected to a home page. 
+    - The login functionality is done by a post method to the backend application. 
+2. Home Page 
+    - The home page should display the following in the middle of the screen: 
+        1. Username
+        2. Date time 
+        3. Path of the working directoy that the application is running from 
+        4. A logout button 
+    - All data should be called from the REST API using get methods 
 
-### `yarn start`
+## Installation: 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This application uses Reactjs as the frontend framework, and Node.js as the backend runtime environment. In order to use the application follow these steps: 
+1. Open both the file titled 'node' (node app) and the file titled 'talegent' (react app)
+2. In the node application: 
+    1. Assure that the package.json consists of the following dependencies: 
+            "bcrypt": "^4.0.1",
+            "cors": "^2.8.5",
+            "dotenv": "^8.2.0",
+            "express": "^4.17.1",
+            "express-router": "0.0.1",
+            "jsonwebtoken": "^8.5.1",
+            "knex": "^0.21.1",
+            "pg": "^8.2.0",
+            "router": "^1.3.5"
+        If not, install them through npm/ yarn etc. 
+    2. Run $createdb RiskManagement (to create the database) 
+    3. Run $knex migrate:latest (to migrate the user table)
+    4. Either run $nodemon index.js or $npm start index.js (to begin the sever)
+3. In the react application: 
+    1. Run $npm start (to start the server in your browser) 
+4. The application is ready to use!
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Challenges 
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

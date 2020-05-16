@@ -1,20 +1,8 @@
-// import React from 'react'
+import React from 'react'
 import LoginForm from './LoginForm'
 import '../Styling/LoginPage.css'
-import React, { useEffect } from "react";
 
 export default function LoginPage(props){
-    
-    
-
-    // componentDidMount()
-    //     localStorage.removeItem('token')
-    // }
-
-    useEffect(() => {
-        localStorage.removeItem('token')
-    }, [])
-    
     
     return(
         <div className='mainBody'>
