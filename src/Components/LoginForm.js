@@ -10,13 +10,14 @@ export default class Login extends React.Component {
         password: ''
     }
 
+   
 
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log(event)
         if(this.props.closeForm){ 
         this.props.closeForm(false)}
         this.props.login(this.state)
+        .then(() => this.props.history.push('/'))
     }
 
     handleChange = (event) => {
