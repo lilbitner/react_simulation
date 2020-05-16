@@ -1,7 +1,5 @@
 import React from 'react'
-import '../Styling/LoginPage.css'
-
-
+import '../Styling/LoginForm.css'
 
 export default class Login extends React.Component {
     
@@ -10,12 +8,8 @@ export default class Login extends React.Component {
         password: ''
     }
 
-   
-
     handleSubmit = (event) => {
         event.preventDefault()
-        if(this.props.closeForm){ 
-        this.props.closeForm(false)}
         this.props.login(this.state)
         .then(() => this.props.history.push('/'))
     }
@@ -26,24 +20,20 @@ export default class Login extends React.Component {
             [name]: value
         })
     }
-    
-   
-    
+
     render() {
         return(
             <form onSubmit={this.handleSubmit} className='inputContainer'> 
                 <input type='text' className='usernameInput' name='username'
-                    value={this.state.username} ref='fieldUser' onChange={this.handleChange} 
+                    value={this.state.username} onChange={this.handleChange} 
                     placeholder='Username' 
                 />
                 <input type='text' className='passwordInput' type='password' name='password' 
-                    value={this.state.password} ref='fieldPassword' onChange={this.handleChange} 
+                    value={this.state.password} onChange={this.handleChange} 
                     placeholder='Password'
                 />
                 <input className='Submit' type='submit'/>
-
-            </form>
-            
+            </form> 
         )
     }
 }

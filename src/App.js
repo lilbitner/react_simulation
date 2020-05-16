@@ -7,7 +7,7 @@ import {Switch, Route, Redirect} from 'react-router-dom'
 export default class App extends React.Component {
 
   state = {
-    user: [],
+    user: {},
     isLoggedIn: false,
     isCorrectUser: true,
     isIncorrectPassword: false,
@@ -23,19 +23,8 @@ export default class App extends React.Component {
       }
       })
       .then(response => response.json())
-      .then(result => this.setState({user: result.user}))
+      .then(result => this.setState({user: result.user, pathname: result.path}))
     }
-    if(localStorage.token){
-      fetch('http://localhost:5000/users/pathname', {
-      method: "GET",
-      headers: {
-        'Content-Type': "application/json"
-      }
-      })
-      .then(response => response.json())
-      .then(result => this.setState({pathname: result.pathname}))
-    }
-    
   }
 
   login = (user) => {
@@ -48,23 +37,25 @@ export default class App extends React.Component {
      })
      .then(response => response.json())
      .then(response => {
-       if(response.status == 401)
-       { this.setState({isCorrectUser: false}) }
-      else {
-       localStorage.setItem('token', response.token)
-       this.componentDidMount()
-       this.setState({isLoggedIn: true, user: response.foundUser})}
-      })
+        if(response.status == 401)
+          {this.setState({isCorrectUser: false}) }
+        else {
+          localStorage.setItem('token', response.token)
+          this.componentDidMount()
+          this.setState({isLoggedIn: true, user: response.foundUser, isCorrectUser: true})
+        }
+    })
+  }
+
+   clearState = () => {
+     this.setState({user: {}, pathname: '', isLoggedIn: false})
    }
-
-  
-
 
   render() {
     return (
       <div className="App">
         <Switch> 
-            <PrivateRoute exact user={this.state.user} path='/'  pathname={this.state.pathname} />
+            <PrivateRoute exact user={this.state.user} path='/' clearState={this.clearState} pathname={this.state.pathname} />
             <Route path='/login' render={(props) => <LoginPage {...props} 
                isLoggedIn={this.state.isLoggedIn} isCorrectUser={this.state.isCorrectUser} 
                login={this.login} 
