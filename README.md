@@ -16,6 +16,8 @@ React and Node applications created to demonstrate the following functionality:
         4. A logout button 
     - All data should be called from the REST API using get methods 
 
+![](Talagent.gif)
+
 ## Installation: 
 
 This application uses Reactjs as the frontend framework, and Node.js as the backend runtime environment. In order to use the application follow these steps: 
