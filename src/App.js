@@ -48,9 +48,9 @@ export default class App extends React.Component {
     })
   }
 
-   clearState = () => {
-     this.setState({user: {}, pathname: '', isLoggedIn: false, timestamp: ''})
-   }
+  clearState = () => {
+    this.setState({user: {}, pathname: '', isLoggedIn: false, timestamp: ''})
+  }
 
   render() {
     return (
